@@ -4,6 +4,7 @@ const Op = db.Sequelize.Op
 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
+  console.log('called')
   // Validate request
   if (!req.body.title) {
     res.status(400).send({

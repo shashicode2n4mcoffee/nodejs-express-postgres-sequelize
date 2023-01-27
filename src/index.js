@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 db.sequelize
-  .sync({ force: true })
+  .sync()
   .then(() => {
     console.log('Synced db.')
   })
@@ -26,12 +26,11 @@ db.sequelize
     console.log('Failed to sync db: ' + err.message)
   })
 
+require('./routes/index')(app)
 // simple route
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to India.' })
 })
-
-require('./routes/index')(app)
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8082
